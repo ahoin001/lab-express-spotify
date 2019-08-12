@@ -57,14 +57,42 @@ app.get('/albums/:artistId', (req, res, next) => {
     spotifyApi
         .getArtistAlbums(req.params.artistId, { limit: 5 })         // spotify api uses artistId to retrieve albums from the artist
         .then(data => {
-            
-             //console.log(" = = == = == = = = =",data.body);
-             // passes array (.items) of albums from artist
+
+            // console.log(" = = == = == = = = =",data.body);
+            // passes array (.items) of albums from artist
             res.render('albums', { allTheAlbums: data.body.items });
         })
         .catch(err => console.log("Error while getting the albums: ", err));
 
 })
+
+// Get tracks in an album
+app.get('/album-tracks/:albumId', (req, res, next) => { 
+    spotifyApi
+      .getAlbumTracks(req.params.albumId)
+      .then(data => {
+        //   console.log("++++++++", data.body);
+        res.render('album-tracks', { albumTracksArray: data.body.items });
+      })
+      .catch(err => console.log("Error while getting the tracks: ", err));
+  });
+
+// app.get('/album-tracks/:albumId'), (req, res, next) => {
+
+//     spotifyApi
+//         .getAlbumTracks(req.params.albumId, { limit: 5, offset: 1 })
+//         .then((data) => {
+
+//             console.log(data.body);
+//             res.render('album-tracks',{albumTracksArray: data.body.items})
+
+//         })
+//         .catch((err) => {
+//             console.log('Something went wrong!', err);
+//         }) 
+
+// }
+
 
 
 app.listen(3000, () => console.log("My Spotify project running on port 3000 🎧 🥁 🎸 🔊"));

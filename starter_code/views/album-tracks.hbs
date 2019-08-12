@@ -1,14 +1,15 @@
 <ul>
 
-    {{#each allTheAlbums}}
+    {{#each albumTracksArray}}
     <li>
         {{ this.name }}
         <br>
         <img src="{{ this.images.0.url }}" alt="" width="160px" >  
     <br>
-{{!-- this.id is Id of album  --}}
+    {{!-- app.get('/albums/:artistId'....) --}}
+    
     <a href="/album-tracks/{{this.id}}">View the tracks</a>
-
+    
     </li>
 
     {{/each}}
