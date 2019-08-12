@@ -1,7 +1,8 @@
 {{!-- action = "/artists" => after submit go to this page --}}
-{{!-- TODO:  Am i not using post here? --}}
+{{!-- TODO:  No need for post since information is not private--}}
 <form action="/artists" method="get">
 
+{{!-- name will be what we use to get this object info from req.params --}}
     <input type="text" name="theArtistName" id="" placeholder="Search artists here...">
 
     <button type="submit"> Find artists! </button>
